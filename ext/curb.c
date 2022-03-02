@@ -236,6 +236,10 @@ static VALUE ruby_curl_http2_q(VALUE mod) {
 }
 
 void Init_curb_core() {
+   #ifdef HAVE_RB_EXT_RACTOR_SAFE
+     rb_ext_ractor_safe(true);
+   #endif
+
   // TODO we need to call curl_global_cleanup at exit!
   curl_version_info_data *ver;
   VALUE curlver, curllongver, curlvernum;
